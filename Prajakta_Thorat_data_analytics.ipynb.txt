@@ -1,0 +1,1167 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "Prajakta_Thorat_data_analytics.ipynb",
+      "provenance": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "GjyrROHKf-U7"
+      },
+      "source": [
+        "import pandas as pd\n",
+        "import numpy as np"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "Ju5LTLOnhk_d"
+      },
+      "source": [
+        "Import library"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "WJp-FxP1hp-T"
+      },
+      "source": [
+        " Use pandas read_csv function to read csv file in python and pandas dataframe method to convert it into dataframe"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 496
+        },
+        "id": "D9vgFeRvEq_3",
+        "outputId": "fa766ae1-0254-4bd5-a348-d5e22899dcb5"
+      },
+      "source": [
+        "df=pd. DataFrame(pd. read_csv('/content/sample_data/train.csv'))\n",
+        "df. head()"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/html": [
+              "<div>\n",
+              "<style scoped>\n",
+              "    .dataframe tbody tr th:only-of-type {\n",
+              "        vertical-align: middle;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe tbody tr th {\n",
+              "        vertical-align: top;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe thead th {\n",
+              "        text-align: right;\n",
+              "    }\n",
+              "</style>\n",
+              "<table border=\"1\" class=\"dataframe\">\n",
+              "  <thead>\n",
+              "    <tr style=\"text-align: right;\">\n",
+              "      <th></th>\n",
+              "      <th>PassengerId</th>\n",
+              "      <th>Survived</th>\n",
+              "      <th>Pclass</th>\n",
+              "      <th>Name</th>\n",
+              "      <th>Sex</th>\n",
+              "      <th>Age</th>\n",
+              "      <th>SibSp</th>\n",
+              "      <th>Parch</th>\n",
+              "      <th>Ticket</th>\n",
+              "      <th>Fare</th>\n",
+              "      <th>Cabin</th>\n",
+              "      <th>Embarked</th>\n",
+              "    </tr>\n",
+              "  </thead>\n",
+              "  <tbody>\n",
+              "    <tr>\n",
+              "      <th>0</th>\n",
+              "      <td>1</td>\n",
+              "      <td>0</td>\n",
+              "      <td>3</td>\n",
+              "      <td>Braund, Mr. Owen Harris</td>\n",
+              "      <td>male</td>\n",
+              "      <td>22.0</td>\n",
+              "      <td>1</td>\n",
+              "      <td>0</td>\n",
+              "      <td>A/5 21171</td>\n",
+              "      <td>7.2500</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>S</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>1</th>\n",
+              "      <td>2</td>\n",
+              "      <td>1</td>\n",
+              "      <td>1</td>\n",
+              "      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>\n",
+              "      <td>female</td>\n",
+              "      <td>38.0</td>\n",
+              "      <td>1</td>\n",
+              "      <td>0</td>\n",
+              "      <td>PC 17599</td>\n",
+              "      <td>71.2833</td>\n",
+              "      <td>C85</td>\n",
+              "      <td>C</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>2</th>\n",
+              "      <td>3</td>\n",
+              "      <td>1</td>\n",
+              "      <td>3</td>\n",
+              "      <td>Heikkinen, Miss. Laina</td>\n",
+              "      <td>female</td>\n",
+              "      <td>26.0</td>\n",
+              "      <td>0</td>\n",
+              "      <td>0</td>\n",
+              "      <td>STON/O2. 3101282</td>\n",
+              "      <td>7.9250</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>S</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>3</th>\n",
+              "      <td>4</td>\n",
+              "      <td>1</td>\n",
+              "      <td>1</td>\n",
+              "      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>\n",
+              "      <td>female</td>\n",
+              "      <td>35.0</td>\n",
+              "      <td>1</td>\n",
+              "      <td>0</td>\n",
+              "      <td>113803</td>\n",
+              "      <td>53.1000</td>\n",
+              "      <td>C123</td>\n",
+              "      <td>S</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>4</th>\n",
+              "      <td>5</td>\n",
+              "      <td>0</td>\n",
+              "      <td>3</td>\n",
+              "      <td>Allen, Mr. William Henry</td>\n",
+              "      <td>male</td>\n",
+              "      <td>35.0</td>\n",
+              "      <td>0</td>\n",
+              "      <td>0</td>\n",
+              "      <td>373450</td>\n",
+              "      <td>8.0500</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>S</td>\n",
+              "    </tr>\n",
+              "  </tbody>\n",
+              "</table>\n",
+              "</div>"
+            ],
+            "text/plain": [
+              "   PassengerId  Survived  Pclass  ...     Fare Cabin  Embarked\n",
+              "0            1         0       3  ...   7.2500   NaN         S\n",
+              "1            2         1       1  ...  71.2833   C85         C\n",
+              "2            3         1       3  ...   7.9250   NaN         S\n",
+              "3            4         1       1  ...  53.1000  C123         S\n",
+              "4            5         0       3  ...   8.0500   NaN         S\n",
+              "\n",
+              "[5 rows x 12 columns]"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 29
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "ZduKGHXODqlg"
+      },
+      "source": [
+        ""
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "jTGlc4NZi4_Z"
+      },
+      "source": [
+        "Description of dataset"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "XEaUHrNIiqfy",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "0d235b74-481e-459a-805b-0449dede5d18"
+      },
+      "source": [
+        "df.shape"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "(891, 12)"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 30
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "4-SLb3OIjYjj"
+      },
+      "source": [
+        "How many null values in each column"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "JqBFLO58i9np",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "3a2cd749-c907-4c99-b704-23015090669f"
+      },
+      "source": [
+        "df.isnull().sum()"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "PassengerId      0\n",
+              "Survived         0\n",
+              "Pclass           0\n",
+              "Name             0\n",
+              "Sex              0\n",
+              "Age            177\n",
+              "SibSp            0\n",
+              "Parch            0\n",
+              "Ticket           0\n",
+              "Fare             0\n",
+              "Cabin          687\n",
+              "Embarked         2\n",
+              "dtype: int64"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 31
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "aoE7akPhlha5"
+      },
+      "source": [
+        "Seperating out the columns which have more than 35% of the values missing in data set"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "OQWXOqWVkzKU",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "6bbcc7a5-ba38-4930-df12-d9ebcd07db15"
+      },
+      "source": [
+        "x=df.isnull().sum() \n",
+        "drop_col=x[x>(35/100*df.shape[0])]\n",
+        "drop_col"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "Cabin    687\n",
+              "dtype: int64"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 32
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "ij3G59DGmDpK",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "0c084c0c-9efd-4c4f-a2b0-8c1c8bb54816"
+      },
+      "source": [
+        "drop_col.index"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "Index(['Cabin'], dtype='object')"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 8
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "dQCK9G7epQZC",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "e64aa757-7e77-4961-9982-0687e9ccde7c"
+      },
+      "source": [
+        "df.drop(drop_col.index, axis=1, inplace=True) \n",
+        "df.isnull().sum()"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "PassengerId      0\n",
+              "Survived         0\n",
+              "Pclass           0\n",
+              "Name             0\n",
+              "Sex              0\n",
+              "Age            177\n",
+              "SibSp            0\n",
+              "Parch            0\n",
+              "Ticket           0\n",
+              "Fare             0\n",
+              "Embarked         2\n",
+              "dtype: int64"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 33
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "-oBZucbIqDwT"
+      },
+      "source": [
+        "Fill entire dataset to specific value"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "BTt-K05ImVLz",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "b24c2b07-4575-4396-e3cf-8b2dcbca865e"
+      },
+      "source": [
+        "df.fillna(df.mean(), inplace=True) \n",
+        "df.isnull().sum()"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "PassengerId    0\n",
+              "Survived       0\n",
+              "Pclass         0\n",
+              "Name           0\n",
+              "Sex            0\n",
+              "Age            0\n",
+              "SibSp          0\n",
+              "Parch          0\n",
+              "Ticket         0\n",
+              "Fare           0\n",
+              "Embarked       2\n",
+              "dtype: int64"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 34
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "c7ENnWtXomL8",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "874f0c38-1322-4c52-c360-0158c85e5791"
+      },
+      "source": [
+        "df['Embarked'].describe()"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "count     889\n",
+              "unique      3\n",
+              "top         S\n",
+              "freq      644\n",
+              "Name: Embarked, dtype: object"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 35
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "rT233GWrro5K"
+      },
+      "source": [
+        " Embarked  attribute we fill the null values  the most frequent value in the column"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "rpI5edKOrHtL"
+      },
+      "source": [
+        "df['Embarked'].fillna('S', inplace=True)"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "U5-NtVNzsBd4",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "d878dff8-f43c-4583-9c93-40ac6cd1c84b"
+      },
+      "source": [
+        "df.isnull().sum()"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "PassengerId    0\n",
+              "Survived       0\n",
+              "Pclass         0\n",
+              "Name           0\n",
+              "Sex            0\n",
+              "Age            0\n",
+              "SibSp          0\n",
+              "Parch          0\n",
+              "Ticket         0\n",
+              "Fare           0\n",
+              "Embarked       0\n",
+              "dtype: int64"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 37
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "e2YRC3m9sVn3"
+      },
+      "source": [
+        "Correlation of every column to every column"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "1KH9SKHAsMo0",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 285
+        },
+        "outputId": "fda56321-8244-46bd-eee9-abd6110e19be"
+      },
+      "source": [
+        "df.corr()"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/html": [
+              "<div>\n",
+              "<style scoped>\n",
+              "    .dataframe tbody tr th:only-of-type {\n",
+              "        vertical-align: middle;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe tbody tr th {\n",
+              "        vertical-align: top;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe thead th {\n",
+              "        text-align: right;\n",
+              "    }\n",
+              "</style>\n",
+              "<table border=\"1\" class=\"dataframe\">\n",
+              "  <thead>\n",
+              "    <tr style=\"text-align: right;\">\n",
+              "      <th></th>\n",
+              "      <th>PassengerId</th>\n",
+              "      <th>Survived</th>\n",
+              "      <th>Pclass</th>\n",
+              "      <th>Age</th>\n",
+              "      <th>SibSp</th>\n",
+              "      <th>Parch</th>\n",
+              "      <th>Fare</th>\n",
+              "    </tr>\n",
+              "  </thead>\n",
+              "  <tbody>\n",
+              "    <tr>\n",
+              "      <th>PassengerId</th>\n",
+              "      <td>1.000000</td>\n",
+              "      <td>-0.005007</td>\n",
+              "      <td>-0.035144</td>\n",
+              "      <td>0.033207</td>\n",
+              "      <td>-0.057527</td>\n",
+              "      <td>-0.001652</td>\n",
+              "      <td>0.012658</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>Survived</th>\n",
+              "      <td>-0.005007</td>\n",
+              "      <td>1.000000</td>\n",
+              "      <td>-0.338481</td>\n",
+              "      <td>-0.069809</td>\n",
+              "      <td>-0.035322</td>\n",
+              "      <td>0.081629</td>\n",
+              "      <td>0.257307</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>Pclass</th>\n",
+              "      <td>-0.035144</td>\n",
+              "      <td>-0.338481</td>\n",
+              "      <td>1.000000</td>\n",
+              "      <td>-0.331339</td>\n",
+              "      <td>0.083081</td>\n",
+              "      <td>0.018443</td>\n",
+              "      <td>-0.549500</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>Age</th>\n",
+              "      <td>0.033207</td>\n",
+              "      <td>-0.069809</td>\n",
+              "      <td>-0.331339</td>\n",
+              "      <td>1.000000</td>\n",
+              "      <td>-0.232625</td>\n",
+              "      <td>-0.179191</td>\n",
+              "      <td>0.091566</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>SibSp</th>\n",
+              "      <td>-0.057527</td>\n",
+              "      <td>-0.035322</td>\n",
+              "      <td>0.083081</td>\n",
+              "      <td>-0.232625</td>\n",
+              "      <td>1.000000</td>\n",
+              "      <td>0.414838</td>\n",
+              "      <td>0.159651</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>Parch</th>\n",
+              "      <td>-0.001652</td>\n",
+              "      <td>0.081629</td>\n",
+              "      <td>0.018443</td>\n",
+              "      <td>-0.179191</td>\n",
+              "      <td>0.414838</td>\n",
+              "      <td>1.000000</td>\n",
+              "      <td>0.216225</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>Fare</th>\n",
+              "      <td>0.012658</td>\n",
+              "      <td>0.257307</td>\n",
+              "      <td>-0.549500</td>\n",
+              "      <td>0.091566</td>\n",
+              "      <td>0.159651</td>\n",
+              "      <td>0.216225</td>\n",
+              "      <td>1.000000</td>\n",
+              "    </tr>\n",
+              "  </tbody>\n",
+              "</table>\n",
+              "</div>"
+            ],
+            "text/plain": [
+              "             PassengerId  Survived    Pclass  ...     SibSp     Parch      Fare\n",
+              "PassengerId     1.000000 -0.005007 -0.035144  ... -0.057527 -0.001652  0.012658\n",
+              "Survived       -0.005007  1.000000 -0.338481  ... -0.035322  0.081629  0.257307\n",
+              "Pclass         -0.035144 -0.338481  1.000000  ...  0.083081  0.018443 -0.549500\n",
+              "Age             0.033207 -0.069809 -0.331339  ... -0.232625 -0.179191  0.091566\n",
+              "SibSp          -0.057527 -0.035322  0.083081  ...  1.000000  0.414838  0.159651\n",
+              "Parch          -0.001652  0.081629  0.018443  ...  0.414838  1.000000  0.216225\n",
+              "Fare            0.012658  0.257307 -0.549500  ...  0.159651  0.216225  1.000000\n",
+              "\n",
+              "[7 rows x 7 columns]"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 38
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 254
+        },
+        "id": "HUkt9r6KI013",
+        "outputId": "cfda3381-0884-4250-aa68-529ee0962f0d"
+      },
+      "source": [
+        "df['FamilySize'] = df[ 'SibSp']+df['Parch'] \n",
+        "df.drop(['SibSp', 'Parch'], axis=1, inplace=True) \n",
+        "df.corr()"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/html": [
+              "<div>\n",
+              "<style scoped>\n",
+              "    .dataframe tbody tr th:only-of-type {\n",
+              "        vertical-align: middle;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe tbody tr th {\n",
+              "        vertical-align: top;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe thead th {\n",
+              "        text-align: right;\n",
+              "    }\n",
+              "</style>\n",
+              "<table border=\"1\" class=\"dataframe\">\n",
+              "  <thead>\n",
+              "    <tr style=\"text-align: right;\">\n",
+              "      <th></th>\n",
+              "      <th>PassengerId</th>\n",
+              "      <th>Survived</th>\n",
+              "      <th>Pclass</th>\n",
+              "      <th>Age</th>\n",
+              "      <th>Fare</th>\n",
+              "      <th>FamilySize</th>\n",
+              "    </tr>\n",
+              "  </thead>\n",
+              "  <tbody>\n",
+              "    <tr>\n",
+              "      <th>PassengerId</th>\n",
+              "      <td>1.000000</td>\n",
+              "      <td>-0.005007</td>\n",
+              "      <td>-0.035144</td>\n",
+              "      <td>0.033207</td>\n",
+              "      <td>0.012658</td>\n",
+              "      <td>-0.040143</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>Survived</th>\n",
+              "      <td>-0.005007</td>\n",
+              "      <td>1.000000</td>\n",
+              "      <td>-0.338481</td>\n",
+              "      <td>-0.069809</td>\n",
+              "      <td>0.257307</td>\n",
+              "      <td>0.016639</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>Pclass</th>\n",
+              "      <td>-0.035144</td>\n",
+              "      <td>-0.338481</td>\n",
+              "      <td>1.000000</td>\n",
+              "      <td>-0.331339</td>\n",
+              "      <td>-0.549500</td>\n",
+              "      <td>0.065997</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>Age</th>\n",
+              "      <td>0.033207</td>\n",
+              "      <td>-0.069809</td>\n",
+              "      <td>-0.331339</td>\n",
+              "      <td>1.000000</td>\n",
+              "      <td>0.091566</td>\n",
+              "      <td>-0.248512</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>Fare</th>\n",
+              "      <td>0.012658</td>\n",
+              "      <td>0.257307</td>\n",
+              "      <td>-0.549500</td>\n",
+              "      <td>0.091566</td>\n",
+              "      <td>1.000000</td>\n",
+              "      <td>0.217138</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>FamilySize</th>\n",
+              "      <td>-0.040143</td>\n",
+              "      <td>0.016639</td>\n",
+              "      <td>0.065997</td>\n",
+              "      <td>-0.248512</td>\n",
+              "      <td>0.217138</td>\n",
+              "      <td>1.000000</td>\n",
+              "    </tr>\n",
+              "  </tbody>\n",
+              "</table>\n",
+              "</div>"
+            ],
+            "text/plain": [
+              "             PassengerId  Survived    Pclass       Age      Fare  FamilySize\n",
+              "PassengerId     1.000000 -0.005007 -0.035144  0.033207  0.012658   -0.040143\n",
+              "Survived       -0.005007  1.000000 -0.338481 -0.069809  0.257307    0.016639\n",
+              "Pclass         -0.035144 -0.338481  1.000000 -0.331339 -0.549500    0.065997\n",
+              "Age             0.033207 -0.069809 -0.331339  1.000000  0.091566   -0.248512\n",
+              "Fare            0.012658  0.257307 -0.549500  0.091566  1.000000    0.217138\n",
+              "FamilySize     -0.040143  0.016639  0.065997 -0.248512  0.217138    1.000000"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 39
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "YAAJYaRQS0Rr"
+      },
+      "source": [
+        " Check if weather the person was alone or  can affect the survival rate"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 496
+        },
+        "id": "lT15c-sQLRib",
+        "outputId": "4e855393-614f-4664-d82a-c0c326d6ba78"
+      },
+      "source": [
+        "df['Alone'] =[0 if df['FamilySize' ][i]>0 else 1 for i in df.index] \n",
+        "df.head()"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/html": [
+              "<div>\n",
+              "<style scoped>\n",
+              "    .dataframe tbody tr th:only-of-type {\n",
+              "        vertical-align: middle;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe tbody tr th {\n",
+              "        vertical-align: top;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe thead th {\n",
+              "        text-align: right;\n",
+              "    }\n",
+              "</style>\n",
+              "<table border=\"1\" class=\"dataframe\">\n",
+              "  <thead>\n",
+              "    <tr style=\"text-align: right;\">\n",
+              "      <th></th>\n",
+              "      <th>PassengerId</th>\n",
+              "      <th>Survived</th>\n",
+              "      <th>Pclass</th>\n",
+              "      <th>Name</th>\n",
+              "      <th>Sex</th>\n",
+              "      <th>Age</th>\n",
+              "      <th>Ticket</th>\n",
+              "      <th>Fare</th>\n",
+              "      <th>Embarked</th>\n",
+              "      <th>FamilySize</th>\n",
+              "      <th>Alone</th>\n",
+              "    </tr>\n",
+              "  </thead>\n",
+              "  <tbody>\n",
+              "    <tr>\n",
+              "      <th>0</th>\n",
+              "      <td>1</td>\n",
+              "      <td>0</td>\n",
+              "      <td>3</td>\n",
+              "      <td>Braund, Mr. Owen Harris</td>\n",
+              "      <td>male</td>\n",
+              "      <td>22.0</td>\n",
+              "      <td>A/5 21171</td>\n",
+              "      <td>7.2500</td>\n",
+              "      <td>S</td>\n",
+              "      <td>1</td>\n",
+              "      <td>0</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>1</th>\n",
+              "      <td>2</td>\n",
+              "      <td>1</td>\n",
+              "      <td>1</td>\n",
+              "      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>\n",
+              "      <td>female</td>\n",
+              "      <td>38.0</td>\n",
+              "      <td>PC 17599</td>\n",
+              "      <td>71.2833</td>\n",
+              "      <td>C</td>\n",
+              "      <td>1</td>\n",
+              "      <td>0</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>2</th>\n",
+              "      <td>3</td>\n",
+              "      <td>1</td>\n",
+              "      <td>3</td>\n",
+              "      <td>Heikkinen, Miss. Laina</td>\n",
+              "      <td>female</td>\n",
+              "      <td>26.0</td>\n",
+              "      <td>STON/O2. 3101282</td>\n",
+              "      <td>7.9250</td>\n",
+              "      <td>S</td>\n",
+              "      <td>0</td>\n",
+              "      <td>1</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>3</th>\n",
+              "      <td>4</td>\n",
+              "      <td>1</td>\n",
+              "      <td>1</td>\n",
+              "      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>\n",
+              "      <td>female</td>\n",
+              "      <td>35.0</td>\n",
+              "      <td>113803</td>\n",
+              "      <td>53.1000</td>\n",
+              "      <td>S</td>\n",
+              "      <td>1</td>\n",
+              "      <td>0</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>4</th>\n",
+              "      <td>5</td>\n",
+              "      <td>0</td>\n",
+              "      <td>3</td>\n",
+              "      <td>Allen, Mr. William Henry</td>\n",
+              "      <td>male</td>\n",
+              "      <td>35.0</td>\n",
+              "      <td>373450</td>\n",
+              "      <td>8.0500</td>\n",
+              "      <td>S</td>\n",
+              "      <td>0</td>\n",
+              "      <td>1</td>\n",
+              "    </tr>\n",
+              "  </tbody>\n",
+              "</table>\n",
+              "</div>"
+            ],
+            "text/plain": [
+              "   PassengerId  Survived  Pclass  ... Embarked FamilySize  Alone\n",
+              "0            1         0       3  ...        S          1      0\n",
+              "1            2         1       1  ...        C          1      0\n",
+              "2            3         1       3  ...        S          0      1\n",
+              "3            4         1       1  ...        S          1      0\n",
+              "4            5         0       3  ...        S          0      1\n",
+              "\n",
+              "[5 rows x 11 columns]"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 40
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "HBeOpcfSPacN",
+        "outputId": "cf88ea3f-1195-4b9b-9d30-5f2b99edc958"
+      },
+      "source": [
+        "df. groupby(['Alone']) ['Survived'].mean()"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "Alone\n",
+              "0    0.505650\n",
+              "1    0.303538\n",
+              "Name: Survived, dtype: float64"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 44
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "mCkgEzHgv_Z4",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 110
+        },
+        "outputId": "1b802a9c-56e9-438b-de2b-93803dc75db3"
+      },
+      "source": [
+        "df[['Alone', 'Fare']].corr()"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/html": [
+              "<div>\n",
+              "<style scoped>\n",
+              "    .dataframe tbody tr th:only-of-type {\n",
+              "        vertical-align: middle;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe tbody tr th {\n",
+              "        vertical-align: top;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe thead th {\n",
+              "        text-align: right;\n",
+              "    }\n",
+              "</style>\n",
+              "<table border=\"1\" class=\"dataframe\">\n",
+              "  <thead>\n",
+              "    <tr style=\"text-align: right;\">\n",
+              "      <th></th>\n",
+              "      <th>Alone</th>\n",
+              "      <th>Fare</th>\n",
+              "    </tr>\n",
+              "  </thead>\n",
+              "  <tbody>\n",
+              "    <tr>\n",
+              "      <th>Alone</th>\n",
+              "      <td>1.000000</td>\n",
+              "      <td>-0.271832</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>Fare</th>\n",
+              "      <td>-0.271832</td>\n",
+              "      <td>1.000000</td>\n",
+              "    </tr>\n",
+              "  </tbody>\n",
+              "</table>\n",
+              "</div>"
+            ],
+            "text/plain": [
+              "          Alone      Fare\n",
+              "Alone  1.000000 -0.271832\n",
+              "Fare  -0.271832  1.000000"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 45
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "Mr4CarUMRrj0"
+      },
+      "source": [
+        " We can see if person was not alone chance the ticket price is higher is high"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Ci51c2RPMfS2",
+        "outputId": "3f2f9eda-2077-4704-c96e-afa5dd3964f0"
+      },
+      "source": [
+        "df['Sex']=[0 if df['Sex'][i]=='male' else 1 for i in df. index]\n",
+        "df.groupby(['Sex']) ['Survived'].mean()"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "Sex\n",
+              "0    0.188908\n",
+              "1    0.742038\n",
+              "Name: Survived, dtype: float64"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 47
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "PZ5QdwiHSRqC"
+      },
+      "source": [
+        " It shows female passenger have more chance to  than male once"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "idQTppspQ28X",
+        "outputId": "e50ae745-d947-4966-c9e6-d10e6d8adfc1"
+      },
+      "source": [
+        "df.groupby(['Embarked']) ['Survived'].mean()"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "Embarked\n",
+              "C    0.553571\n",
+              "Q    0.389610\n",
+              "S    0.339009\n",
+              "Name: Survived, dtype: float64"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 48
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "Gky-y7AoT5P6"
+      },
+      "source": [
+        " Conclusion:\n",
+        " \n",
+        "Female passengers were prioritized over men.\n",
+        " \n",
+        "• People with high class or rich people have higher survival rate than others. The hierarichy might have been followed while saving the passanger.\n",
+        " \n",
+        "• Passengers travelling with their family have higher survival rate.\n",
+        " \n",
+        "• Passengers who borded the ship at Cherbourg, survived more in proportion then the others."
+      ]
+    }
+  ]
+}
